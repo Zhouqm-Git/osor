@@ -1,0 +1,76 @@
+# Phase II: Alpha-aware removal (Adaptive Blending) - FLUX Fill backbone.
+# Goal: add the alpha head and train under incomplete-mask conditioning with
+# adaptive latent blending. Initialized from the Phase I checkpoint.
+
+project:
+  name: OSOR-Flux
+  phase: 2
+  output_dir: outputs/phase2
+  logging_dir: logs
+
+data:
+  batch_size: 2                # 8 GPUs x 2 x grad_accum=1 -> global batch 16
+  num_workers: 4
+  target: src.data.dataset.ObjectRemovalDataset
+  params:
+    data_root: /path/to/corne
+    shot_list: /path/to/corne/shot_m_list.txt
+    mask_list: /path/to/corne/mask-check_m_list.txt
+    mask_sam_list: /path/to/corne/mask_sam_list.txt
+    bg_list: /path/to/corne/bg_m_list.txt
+    augment_mask: true
+
+batch:
+  target: src.data.batch.IdentityBatchTransform
+  params: {}
+
+model:
+  base_model_type: flux_fill
+  flux_base: /path/to/flux-fill-dev
+
+  fixed_prompt: "Remove the instance of object"
+  prompt_embeds_path: "pretrained_weights/fixed_prompt_embeds.pt"
+
+  clip_backbone: /path/to/clip-convnext-xxlarge.bin
+
+  lora:
+    rank: 64
+    modules: ["attn.to_q", "attn.to_k", "attn.to_v", "attn.to_out.0", "ff.net.0.proj", "ff.net.2", "proj_mlp", "single_transformer_blocks.*.proj_out"]
+
+  model_t: 400
+  guidance_scale: 30.0
+
+training:
+  seed: 42
+  mixed_precision: bf16
+  max_steps: 5000
+  grad_accum_steps: 1
+  grad_checkpointing: true
+  max_grad_norm: 1.0
+
+  optimizer:
+    type: adam
+    lr_g: 1e-5
+    lr_d: 1e-5
+    betas: [0.9, 0.999]
+
+loss_weights:
+  gan: 0.3
+  gp: 60000.0
+  lpips: 3.0
+  l1: 0.5
+  alpha_bce: 1.0
+  alpha_dice: 2.0
+
+checkpointing:
+  checkpointing_steps: 1000
+  checkpoints_total_limit: 50
+  resume_from_checkpoint: ~
+  init_checkpoint: outputs/phase1/checkpoint-15000
+
+logging:
+  logging_dir: logs
+  report_to: tensorboard
+  log_image_steps: 100
+  log_grad_steps: 100
+  log_grad_modules: [proj_out]

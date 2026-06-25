@@ -1,0 +1,71 @@
+# Phase I: Pretraining (Hard Blending) - SDXL-Inpainting backbone.
+# Goal: train the generator (LoRA + terminal conv_out) and the multi-scale
+# discriminator with the occupancy-guided GAN + reconstruction losses under
+# hard latent blending. See README.md for the data layout.
+
+project:
+  name: OSOR-SDXL
+  phase: 1
+  output_dir: outputs/phase1
+  logging_dir: logs
+
+data:
+  batch_size: 2                # 8 GPUs x 2 x grad_accum=1 -> global batch 16
+  num_workers: 8
+  target: src.data.dataset.ObjectRemovalDataset
+  params:
+    data_root: /path/to/corne
+    shot_list: /path/to/corne/shot_list.txt
+    mask_list: /path/to/corne/mask_list.txt
+    bg_list: /path/to/corne/bg_list.txt
+    resolution: 512
+
+batch:
+  target: src.data.batch.IdentityBatchTransform
+  params: {}
+
+model:
+  base_model_type: sdxl
+  sdxl_base: /path/to/sdxl-inpainting
+  clip_backbone: /path/to/clip-convnext-xxlarge.bin
+
+  fixed_prompt: "Remove the instance of object"
+  prompt_embeds_path: "pretrained_weights/fixed_prompt_embeds.pt"
+
+  lora:
+    rank: 256
+    modules: [to_k, to_q, to_v, to_out.0, conv, conv1, conv2, conv_shortcut, proj_in, proj_out, ff.net.2, ff.net.0.proj]
+
+  model_t: 600
+
+training:
+  seed: 42
+  mixed_precision: bf16
+  max_steps: 15000
+  grad_accum_steps: 1
+  grad_checkpointing: true
+  max_grad_norm: 1.0
+
+  optimizer:
+    type: adam
+    lr_g: 1e-5
+    lr_d: 1e-5
+    betas: [0.9, 0.999]
+
+loss_weights:
+  gan: 0.3
+  gp: 60000.0
+  lpips: 5.0
+  l1: 0.25
+
+checkpointing:
+  checkpointing_steps: 1000
+  checkpoints_total_limit: 50
+  resume_from_checkpoint: ~
+
+logging:
+  logging_dir: logs
+  report_to: tensorboard
+  log_image_steps: 100
+  log_grad_steps: 100
+  log_grad_modules: [conv_out]
