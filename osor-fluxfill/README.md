@@ -27,12 +27,37 @@ bash scripts/train.sh 1
 bash scripts/train.sh 2
 ```
 
+## Checkpoints
+
+Released OSOR-FLUX-Fill checkpoints are hosted at [QinmingZhou/OSOR](https://huggingface.co/QinmingZhou/OSOR):
+
+```bash
+cd ..
+hf download QinmingZhou/OSOR \
+  --include "osor-fluxfill/weights/*.pth" \
+  --local-dir .
+cd osor-fluxfill
+```
+
+This creates:
+
+```text
+weights/fluxfill_phase1.pth
+weights/fluxfill_phase2.pth
+```
+
+The fixed prompt embedding file is generated automatically by `scripts/train.sh` if missing. For inference, generate it once with:
+
+```bash
+python scripts/cache_prompts.py --config configs/phase2.yaml
+```
+
 Phase II inference:
 
 ```bash
 python scripts/inference_enhance.py \
   -b /path/to/flux-fill-dev \
-  -w /path/to/osor_flux_phase2.pth \
+  -w weights/fluxfill_phase2.pth \
   -p pretrained_weights/fixed_prompt_embeds.pt \
   -i inputs/imgs \
   -m inputs/masks \

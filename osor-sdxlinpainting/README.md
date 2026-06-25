@@ -27,12 +27,37 @@ bash scripts/train.sh 1
 bash scripts/train.sh 2
 ```
 
+## Checkpoints
+
+Released OSOR-SDXL-Inpainting checkpoints are hosted at [QinmingZhou/OSOR](https://huggingface.co/QinmingZhou/OSOR):
+
+```bash
+cd ..
+hf download QinmingZhou/OSOR \
+  --include "osor-sdxlinpainting/weights/*.pth" \
+  --local-dir .
+cd osor-sdxlinpainting
+```
+
+This creates:
+
+```text
+weights/sdxlinpainting_phase1.pth
+weights/sdxlinpainting_phase2.pth
+```
+
+The fixed prompt embedding file is generated automatically by `scripts/train.sh` if missing. For inference, generate it once with:
+
+```bash
+python scripts/cache_prompts.py --config configs/phase2.yaml
+```
+
 Phase II inference:
 
 ```bash
 python scripts/inference_enhance.py \
   -b /path/to/sdxl-inpainting \
-  -w /path/to/osor_sdxl_phase2.pth \
+  -w weights/sdxlinpainting_phase2.pth \
   -p pretrained_weights/fixed_prompt_embeds.pt \
   -i inputs/imgs \
   -m inputs/masks \

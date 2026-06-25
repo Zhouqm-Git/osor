@@ -27,3 +27,6 @@ checkpoints/
 demo/
 example/
 example_random*/
+
+# Local release-card drafts
+cards/
