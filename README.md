@@ -26,14 +26,13 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/Zhouqm-Git/osor"><img src="https://img.shields.io/badge/Project-Page-0A66C2?style=for-the-badge"></a>
-  <a href="https://arxiv.org/abs/2606.28094"><img src="https://img.shields.io/badge/arXiv-2606.28094-B31B1B?style=for-the-badge"></a>
-  <a href="https://huggingface.co/QinmingZhou/OSOR"><img src="https://img.shields.io/badge/Model-OSOR-FFD21E?style=for-the-badge"></a>
-  <a href="https://modelscope.cn/datasets/ZhouqmR/CORNE"><img src="https://img.shields.io/badge/Dataset-CORNE-6246EA?style=for-the-badge"></a>
-  <a href="https://huggingface.co/datasets/QinmingZhou/CORNE-Val"><img src="https://img.shields.io/badge/Bench-CORNE--Val-2EA44F?style=for-the-badge"></a>
-  <a href="https://huggingface.co/datasets/QinmingZhou/AnimeEraseBench"><img src="https://img.shields.io/badge/Bench-AnimeEraseBench-2EA44F?style=for-the-badge"></a>
-  <a href="https://huggingface.co/datasets/QinmingZhou/TextEraseBench"><img src="https://img.shields.io/badge/Bench-TextEraseBench-2EA44F?style=for-the-badge"></a>
-  <img src="https://visitor-badge.laobi.icu/badge?page_id=Zhouqm-Git.osor&style=for-the-badge" alt="Visitors">
+  <a href="https://github.com/Zhouqm-Git/osor"><img src="https://img.shields.io/badge/%F0%9F%90%8B%20Project-Page-0A66C2?style=flat&labelColor=555555" alt="Project Page"></a>
+  <a href="https://arxiv.org/abs/2606.28094"><img src="https://img.shields.io/badge/arXiv-2606.28094-B31B1B?style=flat&labelColor=555555" alt="arXiv"></a>
+  <a href="https://huggingface.co/QinmingZhou/OSOR"><img src="https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Model-1F8ACB?style=flat&labelColor=555555" alt="Hugging Face Model"></a>
+  <a href="https://modelscope.cn/datasets/ZhouqmR/CORNE"><img src="https://img.shields.io/badge/%F0%9F%A7%B8%20Dataset-CORNE-1F8ACB?style=flat&labelColor=555555" alt="CORNE Dataset"></a>
+  <a href="https://huggingface.co/datasets/QinmingZhou/CORNE-Val"><img src="https://img.shields.io/badge/Bench-CORNE--Val-2EA44F?style=flat&labelColor=555555" alt="CORNE-Val Benchmark"></a>
+  <a href="https://huggingface.co/datasets/QinmingZhou/AnimeEraseBench"><img src="https://img.shields.io/badge/Bench-AnimeEraseBench-2EA44F?style=flat&labelColor=555555" alt="AnimeEraseBench"></a>
+  <a href="https://huggingface.co/datasets/QinmingZhou/TextEraseBench"><img src="https://img.shields.io/badge/Bench-TextEraseBench-2EA44F?style=flat&labelColor=555555" alt="TextEraseBench"></a>
 </p>
 
 OSOR is a one-step diffusion framework for efficient, effect-aware, and mask-robust object removal. It removes both the target object and object-associated effects such as shadows, reflections, and residual traces, while running in a single denoising step.
