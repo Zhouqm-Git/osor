@@ -26,7 +26,7 @@
 </p>
 
 <p align="center">
-  <a href="https://zhouqm-git.github.io/osor/demo/"><img src="https://img.shields.io/badge/Project-Page-62B01E?style=flat&labelColor=555555" alt="Project Page"></a>
+  <a href="https://zhouqm-git.github.io/osor/"><img src="https://img.shields.io/badge/Project-Page-62B01E?style=flat&labelColor=555555" alt="Project Page"></a>
   <a href="https://arxiv.org/abs/2606.28094"><img src="https://img.shields.io/badge/arXiv-2606.28094-B31B1B?style=flat&labelColor=555555" alt="arXiv"></a>
   <a href="https://huggingface.co/QinmingZhou/OSOR"><img src="https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Model-1F8ACB?style=flat&labelColor=555555" alt="Hugging Face Model"></a>
   <a href="https://modelscope.cn/datasets/ZhouqmR/CORNE"><img src="https://img.shields.io/badge/%F0%9F%A4%97%20Dataset-CORNE-1F8ACB?style=flat&labelColor=555555" alt="CORNE Dataset"></a>
