@@ -54,6 +54,8 @@ python scripts/cache_prompts.py --config configs/phase2.yaml
 
 Phase II inference:
 
+By default, we follow the paper setting and do not enable paste-back post-processing. The direct OSOR output usually gives better effect-aware removal. If you specifically want to composite the predicted region back onto the original image, add `--paste_back`.
+
 ```bash
 python scripts/inference_enhance.py \
   -b /path/to/sdxl-inpainting \
@@ -62,7 +64,6 @@ python scripts/inference_enhance.py \
   -i inputs/imgs \
   -m inputs/masks \
   -o outputs \
-  --paste_back \
   --resolution 512
 ```
 
