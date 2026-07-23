@@ -98,6 +98,20 @@ Backbone-specific instructions:
 
 Each package contains `configs/`, `scripts/`, and `src/` and can be used independently.
 
+### Installation
+
+The released OSOR-FLUX-Fill and OSOR-SDXL-Inpainting code was tested with Python 3.10, PyTorch 2.6.0, and CUDA 12.4. Create a dedicated environment and install the shared dependencies from the repository root:
+
+```bash
+conda create -n osor python=3.10 -y
+conda activate osor
+
+pip install torch==2.6.0 torchvision==0.21.0 --index-url https://download.pytorch.org/whl/cu124
+pip install -r requirements.txt
+```
+
+For a different CUDA version, install the matching PyTorch 2.6.0 wheel from [PyTorch](https://pytorch.org/get-started/locally/) before running `pip install -r requirements.txt`. SAVP has a separate dependency stack because it relies on MMDetection and SAM2; follow [SAVP/README.md](SAVP/README.md) for its tested setup.
+
 Download released checkpoints with:
 
 ```bash

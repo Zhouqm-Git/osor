@@ -1,0 +1,21 @@
+# Shared dependencies for OSOR-FLUX-Fill and OSOR-SDXL-Inpainting.
+# Tested with Python 3.10, PyTorch 2.6.0, and CUDA 12.4.
+accelerate==1.4.0
+diffusers==0.32.2
+einops==0.8.1
+lpips==0.1.4
+numpy==1.26.4
+omegaconf==2.3.0
+open_clip_torch==2.31.0
+opencv-python==4.11.0.86
+peft==0.14.0
+Pillow==11.1.0
+PyYAML==6.0.2
+safetensors==0.5.3
+scipy==1.15.2
+tensorboard==2.19.0
+torch==2.6.0
+torchvision==0.21.0
+tqdm==4.67.1
+transformers==4.49.0
+vision-aided-loss==0.1.0

@@ -19,6 +19,12 @@ src/
 
 ## Quick Start
 
+Install the shared OSOR environment from the repository root before training or inference:
+
+```bash
+pip install -r ../requirements.txt
+```
+
 Edit `configs/phase1.yaml` and `configs/phase2.yaml` to point to your local SDXL-Inpainting base model, OpenCLIP checkpoint, and CORNE-style data lists.
 
 ```bash
