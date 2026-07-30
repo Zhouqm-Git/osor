@@ -192,7 +192,7 @@ The code, model weights, and datasets do not all share the same license:
 
 | Component | License |
 | --- | --- |
-| Source code in this repository | MIT |
+| Source code in this repository | [MIT](LICENSE) |
 | OSOR-FLUX-Fill checkpoints | [FLUX.1-dev Non-Commercial License](https://huggingface.co/black-forest-labs/FLUX.1-Fill-dev/blob/main/LICENSE.md) |
 | OSOR-SDXL-Inpainting checkpoints | [CreativeML Open RAIL++-M](https://huggingface.co/diffusers/stable-diffusion-xl-1.0-inpainting-0.1/blob/main/LICENSE.md) |
 | CORNE and CORNE-Val | Apache License 2.0; derived from [NHR-Edit](https://huggingface.co/datasets/iitolstykh/NHR-Edit) |
